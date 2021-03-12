@@ -1,6 +1,6 @@
-# Template LaTeX para Tese na Faculdade de Ciências da Universidade de Lisboa (FCUL) segundo as [normas](https://github.com/dpavot/tese_latex_template_fcul/blob/master/normas_escrita_trabalho_final.pdf) de 2019
+# Template LaTeX para Tese de DOUTORAMENTO na Faculdade de Ciências da Universidade de Lisboa (FCUL) segundo as [normas](https://github.com/claudiofgcardoso/FCUL_PhD_thesis_template/blob/update-to-PhD/Regulamento_PhD_d_3098_2018.pdf) de 2018
 
-Tese disponível no [Repositório da Universidade de Lisboa](http://hdl.handle.net/10451/39085).
+Tese disponível brevemente..... em 2024!! 
 
 
 
