@@ -1,0 +1,216 @@
+\documentclass[12pt]{book}
+
+% Omitting Page Numbers
+\pagenumbering{gobble} 
+
+% Packages for referrences and citations______________________________________________________
+%using natbib (only works with bibtex)
+%\usepackage{natbib} 
+%\setcitestyle{square}
+%\usepackage{bibentry} % adding full reference in text
+%\usepackage[pagebackref]{hyperref}  % references
+%\newcommand\BibTeX{B{\sc ib}\TeX}
+
+%using biblatex (works better with biber!)
+\usepackage{hyperref}  % references
+\usepackage[english]{babel}% Recommended
+\usepackage{csquotes}% Recommended
+
+\usepackage[style=apa,
+			natbib=true,
+			hyperref=true,
+			backref=true]{biblatex} %backref serves to link refferences to citation pg.
+
+\addbibresource{/home/ccardoso/Cenas/Academico/mendeley_bibtex/My_CaboVerde.bib}
+\addbibresource{manual_bib.bib}
+\addbibresource{/home/ccardoso/Cenas/Academico/mendeley_bibtex/OOM.bib}
+
+\DeclareCiteCommand{\cite}
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibparens]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{ \usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+
+\DeclareCiteCommand{\textcite}
+{\boolfalse{cbx:parens}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\printnames{labelname}%
+		\printtext{ (\printfield{year}\printtext{)}}}}
+{\ifbool{cbx:parens}
+	{\bibcloseparen\global\boolfalse{cbx:parens}}
+	{}%
+	\multicitedelim}
+{\usebibmacro{textcite:postnote}}
+
+%other packages
+\usepackage[a4paper]{geometry}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{afterpage}  % blank pages
+\usepackage{multirow}  % table
+\usepackage[table, dvipsnames]{xcolor}  % table
+\usepackage{xpatch}  % table
+\usepackage{tabu}  % table
+\usepackage{hhline}  % cell color does not overlap cell line
+\usepackage{fancyhdr}  % headers
+\usepackage{breakcites}  % references do not go though margins
+\usepackage{sectsty}  % change chapter title size
+\setcounter{tocdepth}{3}  % four level contents
+\setcounter{secnumdepth}{3}  % numbered four level contents
+\usepackage{amsfonts}  % math
+\usepackage{amsmath}  % math
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+\usepackage{pdfpages} %include pdf files in document
+\newcommand{\rectangle}{{  % rectangle
+  \ooalign{$\sqsubset\mkern3mu$\cr$\mkern3mu\sqsupset$\cr}
+}}
+
+% References
+\hypersetup{
+   colorlinks=true,
+   linkcolor=MidnightBlue,
+   filecolor=MidnightBlue,
+   citecolor=MidnightBlue, %BrickRed,
+   urlcolor=MidnightBlue,
+   bookmarksopen=true,
+   linktocpage=true,
+   pdfpagemode=UseOutlines,
+   pdfstartpage=1
+}
+
+% Blank Page
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage}
+
+% Hide Blank Pages Numbers + Headers
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage
+  {\pagestyle{empty}\origdoublepage}%
+}
+
+% Space between numbers and text
+\geometry{footskip=1.5cm}
+
+% changing font size for caption
+\DeclareCaptionFormat{myformat}{\fontsize{9}{14.4}\selectfont#1#2#3} %spacing of 14.4pt = 1 line spacing (for fontize = 12 pt)
+\captionsetup{format=myformat}
+
+% changing font size for footnotes
+\renewcommand{\footnotesize}{\fontsize{9pt}{14.4pt}\selectfont}
+%if something goes wrong, use the ones below instead (spacing not defined)
+%\makeatletter
+%\renewcommand\footnotesize{%
+%	\@setfontsize\footnotesize\@ixpt{9}%
+%	\abovedisplayskip 8\p@ \@plus2\p@ \@minus4\p@
+%	\abovedisplayshortskip \z@ \@plus\p@
+%	\belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+%	\def\@listi{\leftmargin\leftmargini
+%		\topsep 4\p@ \@plus2\p@ \@minus2\p@
+%		\parsep 2\p@ \@plus\p@ \@minus\p@
+%		\itemsep \parsep}%
+%	\belowdisplayskip \abovedisplayskip
+%}
+%\makeatother
+
+\begin{document}
+
+\begingroup
+
+\newgeometry{left=3cm, right=3cm, top=1cm, bottom=1.5cm}
+
+\include{parts/capa_provisoria}
+%\include{parts/capa_definitiva}
+
+\afterpage{\blankpage}
+
+\endgroup
+
+% Preamble for Thesis
+\setmainfont{Times New Roman}
+\newgeometry{margin=2.5cm}
+%\setmainfont{XITS} % for ubuntu without times new roman installed
+\pagenumbering{Roman}
+\pagestyle{plain}
+\let\cleardoublepage\clearemptydoublepage  % hide blank pages numbers + headers
+
+\include{parts/acknowledgements}
+
+\include{parts/resumo}
+
+\include{parts/abstract}
+
+\include{parts/resumo_alargado}
+
+\include{parts/contents}
+
+\include{parts/list_of_figures}
+
+\include{parts/list_of_tables}
+
+\include{parts/list_of_acronyms}
+
+\afterpage{\blankpage}
+
+% After Introductory Pages
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\setlength{\headheight}{14pt} 
+
+\chaptertitlefont{\Huge} % to fit chapter title to one line
+\chapternumberfont{\Huge} 
+
+\include{parts/introduction}
+
+\include{parts/cardoso_etal2020}
+
+\include{parts/conclusion}
+
+\pagestyle{plain}  % no more header 
+
+\include{parts/references}
+
+\end{document}
