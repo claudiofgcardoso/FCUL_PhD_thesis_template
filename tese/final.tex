@@ -3,14 +3,88 @@
 % Omitting Page Numbers
 \pagenumbering{gobble} 
 
-% Packages
+% Packages for referrences and citations______________________________________________________
+%using natbib (only works with bibtex)
+%\usepackage{natbib} 
+%\setcitestyle{square}
+%\usepackage{bibentry} % adding full reference in text
+%\usepackage[pagebackref]{hyperref}  % references
+%\newcommand\BibTeX{B{\sc ib}\TeX}
+
+%using biblatex (works better with biber!)
+\usepackage{hyperref}  % references
+\usepackage[english]{babel}% Recommended
+\usepackage{csquotes}% Recommended
+
+\usepackage[style=apa,
+			natbib=true,
+			hyperref=true,
+			backref=true]{biblatex} %backref serves to link refferences to citation pg.
+
+\addbibresource{/home/ccardoso/Cenas/Academico/mendeley_bibtex/My_CaboVerde.bib}
+\addbibresource{manual_bib.bib}
+\addbibresource{/home/ccardoso/Cenas/Academico/mendeley_bibtex/OOM.bib}
+
+\DeclareCiteCommand{\cite}
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibparens]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{ \usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\usebibmacro{cite}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+
+\DeclareCiteCommand{\textcite}
+{\boolfalse{cbx:parens}}
+{\usebibmacro{citeindex}%
+	\printtext[bibhyperref]{\printnames{labelname}%
+		\printtext{ (\printfield{year}\printtext{)}}}}
+{\ifbool{cbx:parens}
+	{\bibcloseparen\global\boolfalse{cbx:parens}}
+	{}%
+	\multicitedelim}
+{\usebibmacro{textcite:postnote}}
+
+%other packages
 \usepackage[a4paper]{geometry}
 \renewcommand{\baselinestretch}{1.5}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{fontspec}
-\usepackage{natbib}
-\setcitestyle{square}
 \usepackage{afterpage}  % blank pages
 \usepackage{multirow}  % table
 \usepackage[table, dvipsnames]{xcolor}  % table
@@ -25,20 +99,17 @@
 \usepackage{amsfonts}  % math
 \usepackage{amsmath}  % math
 \usepackage[nottoc,notlof,notlot]{tocbibind}
-\usepackage[pagebackref]{hyperref}  % references
-%\usepackage{times} % for times new roman
+\usepackage{pdfpages} %include pdf files in document
 \newcommand{\rectangle}{{  % rectangle
   \ooalign{$\sqsubset\mkern3mu$\cr$\mkern3mu\sqsupset$\cr}
 }}
-
-\newcommand\BibTeX{B{\sc ib}\TeX}
 
 % References
 \hypersetup{
    colorlinks=true,
    linkcolor=MidnightBlue,
    filecolor=MidnightBlue,
-   citecolor=BrickRed,
+   citecolor=MidnightBlue, %BrickRed,
    urlcolor=MidnightBlue,
    bookmarksopen=true,
    linktocpage=true,
@@ -133,6 +204,8 @@
 \chapternumberfont{\Huge} 
 
 \include{parts/introduction}
+
+\include{parts/cardoso_etal2020}
 
 \include{parts/conclusion}
 
